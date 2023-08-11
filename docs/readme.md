@@ -9,15 +9,17 @@
 - Project completion schedule
 
 #### Overview
+
     This project is focused on scraping movie information from Rotten Tomatoes using Python and BeautifulSoup. It extracts details like movie titles, ratings, reviews, and other relevant data for further analysis.
 
 #### Installation
+
     Clone this repository to your local machine using:
 
 - bash
         
             Copy code
-            git clone https://github.com/your-username/rotten-tomatoes-scraper.git
+            git clone https://github.com/Si-za1/WebScraping-RottenTomatoes.git
 
 ##### Navigate to the project directory:
 
@@ -31,14 +33,18 @@
 - bash
         
         Copy code
+            python -m env [your folder path for virtual env\venv]
             pip install beautifulsoup4
             pip install requests
             pip install lxml
+            pip install dotenv 
+            pip install pyscopg2
+
 
 
 #### Usage
    
-     Run the scraper.py script to start scraping movie information from 
+     Run the scraper.py script to start the entire pipeline for the scraping of movie information from Rotten tomatoes, then load into the Raw Table and also to the Std table
      
 
 ##### Rotten Tomatoes  
@@ -46,14 +52,9 @@
 
         - Movie name 
         - Cast 
-        - Genre 
+        - Release Year
         - Rating
 
-- bash
-    
-    Copy code
-            
-            python scraper.py: The scraped data will be saved to a CSV file named movies.csv in the project directory.
 
 ### Project Structure
 - bash
@@ -62,10 +63,30 @@
 
         rotten-tomatoes-scraper/
         │
-        ├── scraper.py           # Main Python script for web scraping
-        ├── requirements.txt     # List of project dependencies
-        ├── README.md            # Project documentation (you are here)
+        ├── docs
+            Readme.md               # document related to the project
+        ├── schema
+            -- raw                  #  DDL for raw
+                -- 001_create.sql
+            --std                   # DDL for std
+                -- 001_create.sql
+        ├── src                   #all the folders related to the project
+            --database
+                -- __init__.py
+                -- connection.py      #connection with the database
+                -- query.py           #for running the queries
+            -- scraping
+                --__init__.py
+                -- scraping.py        #code for scraping the site
+            -- sql 
+                -- raw              #dml for the raw tables
+                    -- 001_insert.sql
+                -- std              #dml for the std tables
+                    -- 001_insert.sql
+                --constants.py   #path for all the files
+                -- utilis.py     #for reading the file paths
         └── .gitignore           # Git ignore file
+        -- scraper.py           #for running the ETL
 
 ### Project completion schedule 
 
@@ -76,7 +97,7 @@
         Worked on scraping the page, scraping all the details that I need, as well as worked on how to work with the Html tags and inspection tools
     
     Day 03 
-        Worked on databse connection with PgAdmin4 using postgres, and worked on loading all the raw data into the raw schema
+        Worked on database connection with PgAdmin4 using postgres, and worked on loading all the raw data into the raw schema
     
     Day 04
         Worked on cleaning of the raw data, and sending it to the standard table
